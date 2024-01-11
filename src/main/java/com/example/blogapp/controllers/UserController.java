@@ -1,5 +1,6 @@
 package com.example.blogapp.controllers;
 
+import com.example.blogapp.payloads.ApiResponse;
 import com.example.blogapp.payloads.UserDto;
 import com.example.blogapp.service.implementations.UserServiceImpl;
 import jakarta.validation.Valid;
@@ -36,9 +37,9 @@ public class UserController {
 
 
     @DeleteMapping("/{uid}")
-    public ResponseEntity<?> deleteUser(@PathVariable Integer uid){
+    public ResponseEntity<ApiResponse> deleteUser(@PathVariable Integer uid){
         userService.deleteUser(uid);
-        return new ResponseEntity<>(Map.of("Success","User Deleted Successfully"), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse("User Deleted Successfully", true), HttpStatus.OK);
     }
 
 
